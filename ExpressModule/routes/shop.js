@@ -3,9 +3,14 @@ const router = express.Router();
 const path = require('path');
 
 const rootDir = require('../util/path');
+const adminData = require('./admin');
+
 
 router.get('/', (req, res)=> {
-    res.status(200).sendFile(path.join(rootDir, "view", "shop.html"));
+
+    const products = adminData.products;
+    res.render('shop', {prods: products, docTitle: 'Shop'}); // here shop is auto calling shop.pug
+    // res.status(200).sendFile(path.join(rootDir, "view", "shop.html"));
 });
 
 module.exports = router;
